@@ -1,0 +1,36 @@
+@startuml
+
+class FXMLController {
+    -tableView : TableView<ToDoItem>
+    -nameCo : TableColumn<ToDoItem, String>
+    -descriptionCol : TableColumn<ToDoItem, String>
+    -dateCol : TableColumn<ToDoItem, String>
+    -completedCol : TableColumn<ToDoItem, String>
+    -nameField : TextField
+    -descriptionField : TextField
+    -dateField : TextField
+    -isCompleted : TextField
+    -fileField : TextField
+    -errorText : Text
+    -data :ObservableList<ToDoItem>
+    -completed : ObservableList<ToDoItem>
+    -incomplete : ObservableList<ToDoItem>
+    +initialize()
+    +addToList()
+    +isCompletedValid() : boolean
+    +addToObservableList()
+    +isPopulated() : boolean
+    +isDateFormatValid() : boolean
+    +isDateValid() : boolean
+    +clearAll()
+    +loadList()
+    +onlyComplete()
+    +onlyIncomplete()
+    +removeList()
+    +saveList()
+    +showAll()
+    +getObservableList() : ObservableList<ToDoItem>
+
+}
+
+@enduml

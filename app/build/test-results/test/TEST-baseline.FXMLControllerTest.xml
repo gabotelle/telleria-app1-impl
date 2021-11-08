@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="baseline.FXMLControllerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-11-07T23:36:12" hostname="Gabriels-MacBook-Air.local" time="0.064">
+<testsuite name="baseline.FXMLControllerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-11-08T01:41:29" hostname="Gabriels-MacBook-Air.local" time="0.092">
   <properties/>
-  <testcase name="isDateFormatValid()" classname="baseline.FXMLControllerTest" time="0.037"/>
+  <testcase name="isDateFormatValid()" classname="baseline.FXMLControllerTest" time="0.049"/>
   <testcase name="isNotPopulated()" classname="baseline.FXMLControllerTest" time="0.002"/>
-  <testcase name="isNotDateValid()" classname="baseline.FXMLControllerTest" time="0.002"/>
-  <testcase name="addToObservableList()" classname="baseline.FXMLControllerTest" time="0.007"/>
+  <testcase name="isNotDateValid()" classname="baseline.FXMLControllerTest" time="0.005"/>
+  <testcase name="addToObservableList()" classname="baseline.FXMLControllerTest" time="0.014"/>
   <testcase name="isDateFormatNotValid()" classname="baseline.FXMLControllerTest" time="0.002"/>
   <testcase name="isPopulated()" classname="baseline.FXMLControllerTest" time="0.001"/>
-  <testcase name="clearAll()" classname="baseline.FXMLControllerTest" time="0.002"/>
-  <testcase name="isDateValid()" classname="baseline.FXMLControllerTest" time="0.001"/>
-  <testcase name="removeList()" classname="baseline.FXMLControllerTest" time="0.001"/>
+  <testcase name="isDateValid()" classname="baseline.FXMLControllerTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

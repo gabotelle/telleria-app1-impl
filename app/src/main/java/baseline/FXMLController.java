@@ -4,17 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
-
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class FXMLController {
 
@@ -44,15 +49,6 @@ public class FXMLController {
 
         @FXML
         private TextField isCompleted;
-
-        @FXML
-        private TextField fileField;
-
-        @FXML
-        private Button saveButton;
-
-        @FXML
-        private Button loadButton;
 
         @FXML
         private Text errorText;
@@ -172,6 +168,10 @@ public class FXMLController {
 
         @FXML
         void clearAll(ActionEvent event) {
+                clearAllList();
+        }
+
+        void clearAllList() {
                 data.clear();
                 completed.clear();
                 incomplete.clear();
@@ -179,7 +179,33 @@ public class FXMLController {
 
         @FXML
         void loadList(ActionEvent event) {
+                File file  = getFile();
+                uploadSaveFile(file);
+        }
 
+        public void uploadSaveFile(File file) {
+                if (file != null) {
+                        try {
+                                FileInputStream inputFile = new FileInputStream(file);
+                                Scanner sc = new Scanner(inputFile);
+                                clearAllList();
+                                String[] input = sc.nextLine().split("&");
+                                for(int i = 0; i < input.length; i += 4){
+                                        if(isDateFormatValid(input[i+2])){
+                                                addToObservableList(input[i], input[i+1], "", input[i+3]);
+                                        }
+                                        else {
+                                                addToObservableList(input[i], input[i + 1], input[i + 2], input[i + 3]);
+                                        }
+                                }
+                                sc.close();
+                        } catch (IOException e) {
+                                e.printStackTrace();
+                        }
+                }
+                else{
+                        errorText.setText("File does not exist");
+                }
         }
 
         @FXML
@@ -214,8 +240,39 @@ public class FXMLController {
 
         @FXML
         void saveList(ActionEvent event) {
-
+                File file  = getFile();
+                writeSaveFile(file);
         }
+
+        public void writeSaveFile(File file) {
+                if (file != null) {
+                        try {
+                                PrintWriter writer;
+                                writer = new PrintWriter(file);
+                                StringBuilder saveText = new StringBuilder();
+                                for (ToDoItem item: data) {
+                                        saveText.append(item.getName()).append("&").append(item.getDescription())
+                                                .append("&").append(item.getDate()).append("&")
+                                                .append(item.getCompleted()).append("&");
+                                }
+                                writer.println(saveText);
+                                writer.close();
+                        } catch (IOException e) {
+                                e.printStackTrace();
+                        }
+                }
+                else{
+                        errorText.setText("File does not exist");
+                }
+        }
+
+        private File getFile(){
+                FileChooser chooser = new FileChooser();
+                chooser.setTitle("Open File");
+                return chooser.showOpenDialog(new Stage());
+        }
+
+
 
         @FXML
         void showAll(ActionEvent event) {
@@ -225,4 +282,5 @@ public class FXMLController {
         public ObservableList<ToDoItem> getObservableList() {
                 return data;
         }
+
 }
