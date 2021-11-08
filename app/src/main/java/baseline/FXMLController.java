@@ -1,4 +1,8 @@
 package baseline;
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 1 Solution
+ *  Copyright 2021 Gabriel Telleria
+ */
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -206,6 +210,11 @@ public class FXMLController {
                 else{
                         errorText.setText("File does not exist");
                 }
+        }
+
+        @FXML
+        void userGuide(ActionEvent event){
+                errorText.setText("Link to this video!");
         }
 
         @FXML
