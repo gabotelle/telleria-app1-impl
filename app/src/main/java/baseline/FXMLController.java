@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -214,7 +216,10 @@ public class FXMLController {
 
         @FXML
         void userGuide(ActionEvent event){
-                errorText.setText("Link to this video!");
+                ClipboardContent link = new ClipboardContent();
+                link.putString("https://ucf.zoom.us/rec/share/3RN3dPdA6zI5V6mYzqCAIN81bHnauB1hTrQSx_mvRdcWXF7lk91Yj8WOTrJXeVFg.hWRmoTXkK7yiueiW");
+                Clipboard.getSystemClipboard().setContent(link);
+                errorText.setText("Link copied to clipboard: https://ucf.zoom.us/rec/share/3RN3dPdA6zI5V6mYzqCAIN81bHnauB1hTrQSx_mvRdcWXF7lk91Yj8WOTrJXeVFg.hWRmoTXkK7yiueiW");
         }
 
         @FXML
